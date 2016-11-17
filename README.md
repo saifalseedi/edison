@@ -49,69 +49,9 @@ the Vertex integration,** select one of the following tutorials, and complete al
 
 ## Association with Vertex
 
-**NOTE:** This documentation will not be necessary when using the Vertex dashboard, since this process is implemented automatically. This section describes the required manual process until the dashboard is ready for release.
+In order to associate your Edison with Vertex, you must first set up the Edison software according to the programming language of your choice. See the instructions on how to do so for [Arduino](https://github.com/relayr/edison/tree/master/arduino){:target="_blank"} or [Python](https://github.com/relayr/edison/tree/master/python){:target="_blank"}.
 
-In order to associate your device with Vertex, you must first set up the Edison software according to the programming language of your choice. We'll come back to this section later!
-
-First, select one of the available languages mentioned above and follow the instructions in the linked tutorial. When finished, you can associate the
-device with Vertex. This section explains how to do that, as well as where to find the required parameters to introduce in the code examples.
-
-### Create a Device In the Developer Dashboard
-
-The very first step in order to try the examples is to create a device on the relayr platform. Note that **if you already did this for the code examples, it's not necessary to do it again!**
-
-If not, log in to the [Developer Dashboard](https://dev.relayr.io) and follow the instructions of [this tutorial](http://docs.relayr.io/getting-started/devices-guide/#introduction).
-
-**NOTE:** On the Developer Dashboard, you must log in to the account where Vertex has been onboarded. All devices that will be associated with Vertex must be on the same account as Vertex itself.
-
-### Parameters
-
-The following parameters are required in order to associate the device with Vertex:
-
--  `Vertex Id`: UUID of your Vertex gateway. Once you're done with the section ["Configuration & Onboarding"](https://github.com/relayr/vertex/blob/master/docs/vertex_DSK_readme.md#configuration--onboarding), the gateway should show up as another device. This UUID simply corresponds to the "device ID" of the gateway, that can be displayed as described [here](http://docs.relayr.io/getting-started/devices-guide/#editing--deleting-a-device).
--  `Authorization Token`: A token that authorizes you to make API calls to your user account and devices that you manage. [Here is more info about it](http://docs.relayr.io/getting-started/account-creation/#user-id-and-authorization-token) and where to retrieve it.
--  `Device Id`: UUID of the device that will be associated with Vertex. Provided by the relayr platform [when adding a device](http://docs.relayr.io/getting-started/devices-guide/).
--  `User`: MQTT user, in this case the same as the `Device Id`.
--  `Password`: MQTT password. Provided by the relayr platform [when adding a device](http://docs.relayr.io/getting-started/devices-guide/).
--  `MQTT Server Hostname`: The IP address of your Vertex gateway. This is not specifically required in this step, but it will be added into the code examples. For more information, please refer to the step #8 of the section ["Configuration & Onboarding"](https://github.com/relayr/vertex/blob/master/docs/vertex_DSK_readme.md#configuration--onboarding) as described on the Vertex documentation.
-
-### Using cURL
-
-Open the terminal (or CLI), fill in the variables in the request shown below with your own parameters, and press enter:
-
-```
-curl -H "Content-Type: application/json" -H "Authorization: Bearer {your Authorization Token}" -X POST -d '{"deviceId": "{your Device Id}","transport": "mqtt","credentials": {"user": "{your Device Id}","password": "{your Password}"},"configuration": {}}' http://prod-vertex.relayr.io:8081/vertices/{your Vertex Id}/devices
-```
-
-### Using Postman
-
-The POST request to associate your device with Vertex can also be done using Postman. If you are not familiar with Postman, you may have a look at [this
-tutorial](https://www.getpostman.com/docs/requests).
-
-Fill in the following parameters to make the request:
-
-**POST URL:**
-`http://prod-vertex.relayr.io:8081/vertices/{your Vertex Id}/devices`
-
-**Headers:**
-
--  `Authorization: Bearer {your Authorization Token}`
--  `Content-Type: application/json`
-
-**Body:**
-
-```
-{
-  "deviceId": "{your Device Id}",
-  "transport": "mqtt",
-  "credentials": {
-    "user": "{your Device Id}",
-    "password": "{your Password}"
-  },
-  "configuration": {}
-}
-
-```
+Once you've done that, then see the [Vertex guide](http://docs.relayr.io/iot-starter-kits/dsk/vertex#Adding-devices-to-your-vertex){:target="_blank"} for instructions on how to perform the device association.
 
 ## License
 
