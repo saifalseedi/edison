@@ -49,9 +49,9 @@ the Vertex integration,** select one of the following tutorials, and complete al
 
 ## Association with Vertex
 
-In order to associate your Edison with Vertex, you must first set up the Edison software according to the programming language of your choice. See the instructions on how to do so for [Arduino](https://github.com/relayr/edison/tree/master/arduino){:target="_blank"} or [Python](https://github.com/relayr/edison/tree/master/python){:target="_blank"}.
+In order to associate your Edison with Vertex, you must first set up the Edison software according to the programming language of your choice, as explained in the previous step.
 
-Once you've done that, then see the [Vertex guide](http://docs.relayr.io/iot-starter-kits/dsk/vertex#Adding-devices-to-your-vertex){:target="_blank"} for instructions on how to perform the device association.
+Once you've done that, then see the [Vertex guide](http://docs.relayr.io/iot-starter-kits/dsk/vertex#Adding-devices-to-your-vertex) for instructions on how to perform the device association.
 
 ## License
 
