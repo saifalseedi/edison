@@ -40,5 +40,7 @@ Thumbs.db
 # Specific files and folders from this project #
 ################################################
 arduino/temp/*
+arduino/temp*
 temp/*
+temp*
 .idea/
