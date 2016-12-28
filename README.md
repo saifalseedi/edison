@@ -1,57 +1,23 @@
-# Intel® Edison and the IoT Acceleration Starter Kit
+# Intel® Edison and the relayr Cloud
 
 ## Introduction
 
 The [Intel® Edison](http://www.intel.com/content/www/us/en/do-it-yourself/edison.html) is a single-board computer with a Silvermont dual-core Intel Atom CPU, integrating WiFi, Bluetooth 4.0, 1 GB DDR, 4 GB eMMC flash memory and USB controllers. The 40 multiplexed GPIO pins, high computing power and connectivity capabilities allow rapid industrial IoT and fog computing prototyping.
 
-In this repository, you will find tutorials and code examples of how to make use of the Edison as a sensor node with the [IoT Acceleration Starter Kit](http://www.iot-starterkit.de/), using two languages: Python and Arduino.
+In this repository, you will find tutorials and code examples of how to make use of the Edison as a sensor node with different relayr's Fog-based Starter Kits, as well as with the Edison alone, using two languages: Python and Arduino.
 
-![](./assets/edison_intro_pic_dell.jpg)
+![](./assets/edison_intro_pic.jpg)
 
-This document provides resources on how to get started with the Edison, including the mechanical assembly. **If your board has already been assembled,
-then please navigate to one of the available tutorials to continue:**
+## Select Your Hardware
 
--  [Python](https://github.com/relayr/edison/tree/master/python)
--  [Arduino](https://github.com/relayr/edison/tree/master/arduino)
+Before getting started, **select the model of the Starter Kit you will be using from the list below**. relayr's Starter Kits include Vertex-enabled gateways, which require different configurations for your board.
 
-## Requirements
+On the other hand, **if you don't have a Starter Kit and want to run these examples with the Edison alone, or with an IoT Sensor Kit, simply choose the last option**.
 
-The following hardware is required:
-
--  [Dell Edge Gateway 5100](http://www.dell.com/us/business/p/dell-edge-gateway-5100/pd)
--  [Intel® Edison Arduino Breakout Kit](https://www.arduino.cc/en/ArduinoCertified/IntelEdison#toc3)
-
-A computer is required to connect the Edison board for flashing and configuration.
-
-**NOTE:** The additional hardware required for the code examples is specified the Arduino and Python tutorials. All necessary parts are included in the [IoT Acceleration Starter Kit](http://www.iot-starterkit.de/).
-
-## Installation & Configuration
-
-### Setting Up the Hardware
-
-Assemble the Arduino Expansion Board found in your Dell Starter Kit according to the directions in the [Intel® Edison guide](https://software.intel.com/en-us/node/628221).
-
-Before continuing, make sure that your board looks like this:
-
-![Edison assembled board](./assets/edison_assembled_board.jpg)
-
-After that, plug the Grove Base Shield onto your Arduino Expansion Board as shown below, and you'll be ready to go:
-
-![Edison with the base shield](./assets/edison_base_shield.jpg)
-
-### Setting Up the Software
-
-Once our board is ready, it's time to configure the software of the Edison according to the programming language of your choice. **Before proceeding with
-the Vertex integration,** select one of the following tutorials, and complete all the steps:
-
--  [Python](https://github.com/relayr/edison/tree/master/python)
--  [Arduino](https://github.com/relayr/edison/tree/master/arduino)
-
-## Association with Vertex
-
-In order to associate your Edison with Vertex, you must first set up the Edison software according to the programming language of your choice, as explained in the previous step.
-
-Once you've done that, then see the [Vertex guide](http://docs.relayr.io/iot-starter-kits/dsk/vertex#Adding-devices-to-your-vertex) for instructions on how to perform the device association.
+* [IoT Acceleration Starter Kit](https://github.com/relayr/edison/blob/master/README_IoT_Acceleration_Starter_Kit.md)
+(incl. hardware from Dell, Intel®, Bosch Connected Devices, and other vendors)
+* [Industrial IoT Starter Kit](https://github.com/relayr/edison/blob/master/README_Industrial_IoT_Starter_Kit.md) (incl. hardware from Cisco, Intel®, ifm electronic, and other vendors)
+* [I am not using any Starter Kit](https://github.com/relayr/edison/blob/master/README_No_Starter_Kit.md). Select this option if you will be working with the Edison board alone, or if you will be using a relayr's IoT Sensor Kit (incl. Arduino breakout board, Grove sensors and actuators, and others)
 
 ## License
 

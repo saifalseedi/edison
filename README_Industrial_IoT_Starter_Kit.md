@@ -20,10 +20,11 @@ The following hardware is required:
 -  [Intel® Edison Arduino Breakout Kit](https://www.arduino.cc/en/ArduinoCertified/IntelEdison#toc3)
 -  Wireless Access Point (that is part of the same local network, so the Edison can connect via WiFi)
 -  Network Switch (to connect the Cisco 809 and the Wireless Access Point)
+- Micro-USB data cable
 
 A computer is required to connect the Edison board for flashing and configuration.
 
-**NOTE:** The additional hardware required for the code examples is specified the Arduino and Python tutorials. Most necessary parts are included in the **Industrial IoT Starter Kit**.
+**NOTE:** The additional hardware required for the code examples is specified on the Arduino and Python tutorials. Most necessary parts are included in the **Industrial IoT Starter Kit**.
 
 ## Installation & Configuration
 
