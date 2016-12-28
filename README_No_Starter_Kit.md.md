@@ -6,7 +6,7 @@ The [Intel® Edison](http://www.intel.com/content/www/us/en/do-it-yourself/ediso
 
 In this repository, you will find tutorials and code examples of **how to make use of the Edison board alone, without one of the relayr's Fog-based Starter Kits**, as a sensor node, using two languages: Python and Arduino.
 
-Otherwise, **if you will be using your board together with a Starter Kit, and thus a Vertex-enabled gateway, you may select your kit from the previous menu**. Please consider that the software configuration of the Edison differs when working with the board alone, or in combination with a Fog-based Starter Kit.
+Otherwise, **if you will be using your board together with a Starter Kit, and thus a Vertex-enabled gateway, you may select your kit from the [previous menu](https://github.com/relayr/edison/README.md)**. Please, consider that the software configuration of the Edison differs when working with the board alone, or in combination with a Fog-based Starter Kit.
 
 ![](./assets/edison_intro_pic.jpg)
 

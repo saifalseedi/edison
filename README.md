@@ -10,7 +10,7 @@ In this repository, you will find tutorials and code examples of how to make use
 
 ## Select Your Hardware
 
-Before getting started, **select the model of the Starter Kit you will be using from the list below**. relayr's Starter Kits include Vertex-enabled gateways, which require different configurations for your board.
+Before getting started, **select the model of the Fog-based Starter Kit you will be using from the list below**. relayr's Starter Kits include Vertex-enabled gateways, which require different configurations for your board.
 
 On the other hand, **if you don't have a Starter Kit and want to run these examples with the Edison alone, or with an IoT Sensor Kit, simply choose the last option**.
 
@@ -18,6 +18,10 @@ On the other hand, **if you don't have a Starter Kit and want to run these examp
 (incl. hardware from Dell, Intel®, Bosch Connected Devices, and other vendors)
 * [Industrial IoT Starter Kit](https://github.com/relayr/edison/blob/master/README_Industrial_IoT_Starter_Kit.md) (incl. hardware from Cisco, Intel®, ifm electronic, and other vendors)
 * [I am not using any Starter Kit](https://github.com/relayr/edison/blob/master/README_No_Starter_Kit.md). Select this option if you will be working with the Edison board alone, or if you will be using a relayr's IoT Sensor Kit (incl. Arduino breakout board, Grove sensors and actuators, and others)
+
+## More About relayr's Fog-based Starter Kits
+
+If you would like to know more about the available Starter Kits and Vertex, relayr's fog-computing software, as well as the purchasing options, please refer to [this site](http://www.iot-starterkit.de/).
 
 ## License
 
