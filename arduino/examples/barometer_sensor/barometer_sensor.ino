@@ -36,7 +36,7 @@
 
 
 // Have a look at the onboarding tutorial at the relayr Github:
-// https://github.com/relayr/relayr-edison
+// https://github.com/relayr/edison
 
 // Libraries for the WiFi module 
 #include <WiFi.h>
