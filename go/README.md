@@ -61,18 +61,34 @@ ssh root@<edison's-IP-address>
 When prompted for a password use the one that was set in the security settings of the Intel Edison Board Configuration Tool. If everything worked properly, we should now be
 logged in to the board as **root**.
 
-### Clone the git repository
-
-Once you are logged in the Intel Edison and are able to interact with its Linux shell, you can clone the git repository by executing the following command:
-
-```shell
-git clone https://github.com/relayr/edison
-```
-
-From then on you can find the folder with the Go code examples `~/edison/golang/examples` of the Edison board. However, before running any of them we first have to install all the necessary packages.
 
 ###Install Go
-To install Go, follow the [official installation instructions](https://golang.org/doc/install).
+To install Go, follow the [official installation instructions](https://golang.org/doc/install). 
+
+Download the go1.7.4.linux-386.tar.gz version for the Intel Edison. Navigate to the file location and move it to the Intel Edison,
+
+```shell
+scp go1.7.4.linux-386.tar.gz root@<IP of your device>:/usr/local
+```
+extract the package,
+
+```shell
+mkdir usr/local
+tar -C usr/local -xzf home/root/go1.7.4.linux-386.tar.gz
+```
+
+and finally add /usr/local/go/bin to the PATH environment variable via
+
+```shell
+export PATH=$PATH:/usr/local/go/bin
+```
+
+### Install git-perl tools
+The lightweight version of Git that comes with the Intel Edison does not support the submodules used by Gobot. Installing git-perltools is necessary.
+
+```shell
+opkg install git-perltools
+```
 
 ### Install Gobot
 To use Go with the Intel Edison, use the Gobot framework for drivers and adaptors on the board. To install Gobot and its required dependencies, execute the following in your computer terminal:
@@ -80,43 +96,35 @@ To use Go with the Intel Edison, use the Gobot framework for drivers and adaptor
 ``` shell
  go get -d -u gobot.io/x/gobot/...
 ```
+
+### Clone the git repository
+
+Once you are logged into the Intel Edison and are able to interact with its Linux shell, you can clone the git repository by executing the following command:
+
+```shell
+git clone https://github.com/relayr/edison
+```
+
+From then on you can find the folder with the Go code examples `~/edison/go/examples` of the Edison board. However, before running any of them we first have to install all the necessary packages.
+
 ##Code Examples
-### Example 1 (blink)
+### Example 1 (blink.go)
 
 The `blink.go` example is a *Hello world* script which will toggle the LED on the Edison board every second. 
 
-To run the Go code example, execute the following command in your computer terminal from inside the blink example folder.
-
 ```shell
-GOARCH=386 GOOS=linux go build .
-```
-following this,
- 
-```shell
-scp blink root@<IP of your device>:/home/root/blink
-```
-SSH into the Intel Edison shell with
-
-```shell
-screen ssh root@<IP of your device>
+go run blink.go
 ```
 
-and begin the blink example program with:
+If the LED on the board started blinking, then you can move on to the next example, in which we will connect a motion sensor to the Edison board. 
 
-```shell
-./blink
-```
+### Example 2 (temperature.go)
 
-If the LED on the board started blinking, then you can move on to the next example, in which we will
-connect a motion sensor to the Edison board. 
-
-### Example 2 (temperature)
-
-The `temperature.py` example uses a Grove Temperature Sensor. The sensor outputs a analog value for the temperature in Celsius that is then sent to the relayr Cloud.
+The `temperature.go` example uses a Grove Temperature Sensor. The sensor outputs a analog value for the temperature in Celsius that is then sent to the relayr Cloud.
 
 First, prepare the hardware by connecting the *Grove temperature sensor* to the **Analog Pin 3 (A3)**.
 
-Next, modify the `main.go` script in the temperature folder with the MQTT credentials of the device you've created on the relayr Dashboard. 
+Next, modify the `temperature.go` script in the temperature folder with the MQTT credentials of the device you've created on the relayr Dashboard. 
 
 ```go
 # MQTT credentials.
@@ -128,32 +136,15 @@ Next, modify the `main.go` script in the temperature folder with the MQTT creden
 	}
 ```
 
-Now you are ready to execute the go script by using the following command from within the go temperature example folder:
-
 ```shell
-GOARCH=386 GOOS=linux go build .
-```
-following this,
- 
-```shell
-scp temperature root@<IP of your device>:/home/root/temperature
-```
-SSH into the Intel Edison shell with
-
-```shell
-screen ssh root@<IP of your device>
-```
-In the Intel Edison shell, begin the program with:
-
-```shell
-./buzzer
+go run temperature.go
 ```
 
 If the MQTT client connects, you can observe the changes on the relayr Dashboard on the temperature sensor.
 
-### Example 3 (buzzer)
+### Example 3 (buzzer.go)
 
-The `buzzer` example shows you how to receive commands from the relayr Cloud. The command received by Intel Edison will remotely turn on or off a piezo buzzer.
+The `buzzer.go` example shows you how to receive commands from the relayr Cloud. The command received by Intel Edison will remotely turn on or off a piezo buzzer.
 
 First prepare the hardware by connecting the [grove
 buzzer](http://wiki.seeedstudio.com/wiki/Grove_-_Buzzer) to the **Digital pin 5 (D5)**.
@@ -161,7 +152,7 @@ buzzer](http://wiki.seeedstudio.com/wiki/Grove_-_Buzzer) to the **Digital pin 5 
 ![D5 pin](../assets/d5-pin.jpg)
 
 
-Next, modify the `main.go` script in the buzzer folder with the MQTT credentials of the device you've created on the relayr Dashboard. 
+Next, modify the `buzzer.go` script in the example folder with the MQTT credentials of the device you've created on the relayr Dashboard. 
 
 ```go
 # MQTT credentials.
@@ -173,28 +164,10 @@ Next, modify the `main.go` script in the buzzer folder with the MQTT credentials
 	}
 ```
 
-Now you are ready to execute the go script by using the following command from within the go buzzer example folder:
-
 ```shell
-GOARCH=386 GOOS=linux go build .
+go run buzzer.go
 ```
-following this,
- 
-```shell
-scp buzzer root@<IP of your device>:/home/root/buzzer
-```
-SSH into the Intel Edison shell with
-
-```shell
-screen ssh root@<IP of your device>
-```
-In the Intel Edison shell, begin the program with:
-
-```shell
-./buzzer
-```
-
-If the MQTT client connects, you can observe the changes on the relayr Dashboard on the buzzer.```
+If the MQTT client connects, you can observe the changes on the relayr Dashboard on the buzzer.
 
 Now the Intel Edison is listening to the messages from the relayr cloud. You can control the buzzer by pressing **True** or **False** in the **buzzer**
 widget on the relayr Dashboard. If you set it up correctly, you'll hear a buzzing sound.
