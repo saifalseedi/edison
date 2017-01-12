@@ -81,7 +81,7 @@ To use Go with the Intel Edison, use the Gobot framework for drivers and adaptor
  go get -d -u gobot.io/x/gobot/...
 ```
 ##Code Examples
-### Example 1 (`blink.go`)
+### Example 1 (blink)
 
 The `blink.go` example is a *Hello world* script which will toggle the LED on the Edison board every second. 
 
@@ -110,7 +110,7 @@ and begin the blink example program with:
 If the LED on the board started blinking, then you can move on to the next example, in which we will
 connect a motion sensor to the Edison board. 
 
-### Example 2 (`temperature.go`)
+### Example 2 (temperature)
 
 The `temperature.py` example uses a Grove Temperature Sensor. The sensor outputs a analog value for the temperature in Celsius that is then sent to the relayr Cloud.
 
@@ -119,15 +119,16 @@ First, prepare the hardware by connecting the *Grove temperature sensor* to the 
 Next, modify the `main.go` script in the temperature folder with the MQTT credentials of the device you've created on the relayr Dashboard. 
 
 ```go
-mqtt_credentials = {
-    "user": "<your user ID>",
-    "password": "<your password>",
-    "clientId": "<your client ID>",
-    "topic": "<your MQTT topic>"
-}
+# MQTT credentials.
+	mqtt_credentials := Cred{
+    	user: "<your user ID>",
+    	password: "<your password>",
+    	clientId: "<your client id>",
+    	topic: "<your topic>",
+	}
 ```
 
-Now you are ready to execute the Python script by using the following command from within the go temperature example folder:
+Now you are ready to execute the go script by using the following command from within the go temperature example folder:
 
 ```shell
 GOARCH=386 GOOS=linux go build .
@@ -145,39 +146,55 @@ screen ssh root@<IP of your device>
 In the Intel Edison shell, begin the program with:
 
 ```shell
-./blink
+./buzzer
 ```
 
 If the MQTT client connects, you can observe the changes on the relayr Dashboard on the temperature sensor.
 
-### Example 3 (`buzzer.py`)
+### Example 3 (buzzer)
 
-The `buzzer.py` example shows you how to receive commands from the relayr Cloud. The command received by Intel Edison will remotely turn on or off a piezo buzzer.
+The `buzzer` example shows you how to receive commands from the relayr Cloud. The command received by Intel Edison will remotely turn on or off a piezo buzzer.
 
 First prepare the hardware by connecting the [grove
 buzzer](http://wiki.seeedstudio.com/wiki/Grove_-_Buzzer) to the **Digital pin 5 (D5)**.
 
 ![D5 pin](../assets/d5-pin.jpg)
 
-As in the `motion.py` example, paste the device's credentials from the relayr Dashboard into the appropriate place of the `buzzer.py`.
 
-```python
+Next, modify the `main.go` script in the buzzer folder with the MQTT credentials of the device you've created on the relayr Dashboard. 
+
+```go
 # MQTT credentials.
-mqtt_credentials = {
-    "user": "<your user ID>",
-    "password": "<your password>",
-    "clientId": "<your client ID>",
-    "topic": "<your MQTT topic>"
-}
+	mqtt_credentials := Cred{
+    	user: "<your user ID>",
+    	password: "<your password>",
+    	clientId: "<your client id>",
+    	topic: "<your topic>",
+	}
 ```
 
-Run the code example by executing the following Linux shell command:
+Now you are ready to execute the go script by using the following command from within the go buzzer example folder:
 
 ```shell
-python path/to/buzzer.py
+GOARCH=386 GOOS=linux go build .
 ```
+following this,
+ 
+```shell
+scp buzzer root@<IP of your device>:/home/root/buzzer
+```
+SSH into the Intel Edison shell with
+
+```shell
+screen ssh root@<IP of your device>
+```
+In the Intel Edison shell, begin the program with:
+
+```shell
+./buzzer
+```
+
+If the MQTT client connects, you can observe the changes on the relayr Dashboard on the buzzer.```
 
 Now the Intel Edison is listening to the messages from the relayr cloud. You can control the buzzer by pressing **True** or **False** in the **buzzer**
 widget on the relayr Dashboard. If you set it up correctly, you'll hear a buzzing sound.
-
-
