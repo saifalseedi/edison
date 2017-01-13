@@ -1,17 +1,17 @@
-
+	
 
 package main
 
 import (
- //	"time"
-	"encoding/json"
-	"fmt"
-	"time"
-	"os"
-    "gobot.io/x/gobot"
-    "gobot.io/x/gobot/drivers/gpio"
-    "gobot.io/x/gobot/platforms/intel-iot/edison"
-	MQTT "github.com/eclipse/paho.mqtt.golang"
+	 //	"time"
+"encoding/json"
+"fmt"
+"time"
+"os"
+"gobot.io/x/gobot"
+"gobot.io/x/gobot/drivers/gpio"
+"gobot.io/x/gobot/platforms/intel-iot/edison"
+MQTT "github.com/eclipse/paho.mqtt.golang"
 )
 
 type Message struct {
@@ -26,27 +26,30 @@ type Cred struct {
 	password string
 	clientId string
 	topic string
+	broker string
+
 }
 
 //Main looop
 func main() {
 	//MQTT credentials from target device
 	mqtt_credentials := Cred{
-    user: "06e5e9b3-b019-44c6-9e96-49d37da76b03",
-    password: "9463.vaTm56i",
-    clientId: "TBuXps7AZRMaelknTfadrAw",
-    topic: "/v1/06e5e9b3-b019-44c6-9e96-49d37da76b03/",
+		user: "<your user ID>",
+		password: "<your password>",
+		clientId: "<your client id>",
+		topic: "<your topic>",
+		broker: "<broker>"
 	}
 
 	//Instantiate a buzzer at digital pin 3 for ouput and board
-    board := edison.NewAdaptor()
-    buzzer := gpio.NewBuzzerDriver(board, "5")
+	board := edison.NewAdaptor()
+	buzzer := gpio.NewBuzzerDriver(board, "5")
 
 	opts := MQTT.NewClientOptions()
-	
+
 	//Create broker through port 1883
-	opts.AddBroker("tcp://mqtt.relayr.io:1883")
-	
+	opts.AddBroker(mqtt_credentials.broker)
+
 	opts.SetClientID(mqtt_credentials.clientId)
 	opts.SetUsername(mqtt_credentials.user)
 	opts.SetPassword(mqtt_credentials.password)
@@ -56,7 +59,7 @@ func main() {
 
 	opts.SetDefaultPublishHandler(func(client MQTT.Client, msg MQTT.Message) {
 		choke <- [2]string{msg.Topic(), string(msg.Payload())}
-	})
+		})
 
 	//Initialize the MQTT client
 	client := MQTT.NewClient(opts)
@@ -77,7 +80,7 @@ func main() {
 		for {
 			//Check for new messages from topic
 			incoming := <-choke
-			//print message and topic 
+			//print message and topic
 			fmt.Printf("RECEIVED TOPIC: %s MESSAGE: %s\n", incoming[0], incoming[1])
 			var m Message
 			//convert from json to message structure
@@ -88,10 +91,10 @@ func main() {
 			//if message value is true, turn buzzer on
 			if m.Value == true {
 				//start the buzzer
-		        buzzer.Tone(gpio.C4, gpio.Quarter)
-		        time.Sleep(10 * time.Millisecond)
+				buzzer.Tone(gpio.C4, gpio.Quarter)
+				time.Sleep(10 * time.Millisecond)
 
-		        fmt.Printf("BUZZ")
+				fmt.Printf("BUZZ")
 		    //if message value is false, turn buzzer off
 			} else if m.Value == false{
 				fmt.Printf("NO BUZZ")
@@ -99,15 +102,14 @@ func main() {
 		}
 	}
 
-    robot := gobot.NewRobot("bot",
-        []gobot.Connection{board},
-        []gobot.Device{buzzer},
-        work,
-	)
+	robot := gobot.NewRobot("bot",
+		[]gobot.Connection{board},
+		[]gobot.Device{buzzer},
+		work,
+		)
 
 	robot.Start()
 	client.Disconnect(250)
 	fmt.Println("Sample Subscriber Disconnected")
 
 }
-

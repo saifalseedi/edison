@@ -65,33 +65,28 @@ logged in to the board as **root**.
 ###Install Go
 To install Go, follow the [official installation instructions](https://golang.org/doc/install). 
 
-Download the go1.7.4.linux-386.tar.gz version for the Intel Edison. Navigate to the file location and move it to the Intel Edison,
+Download the ***go1.7.4.linux-386.tar.gz*** version for the Intel Edison and move it to the Intel Edison.
 
 ```shell
 scp go1.7.4.linux-386.tar.gz root@<IP of your device>:/usr/local
 ```
-extract the package,
+Next, extract the package to a created local directory on the Intel Edison and add /usr/local/go/bin to the PATH environment variable.
 
 ```shell
 mkdir usr/local
 tar -C usr/local -xzf home/root/go1.7.4.linux-386.tar.gz
-```
-
-and finally add /usr/local/go/bin to the PATH environment variable via
-
-```shell
 export PATH=$PATH:/usr/local/go/bin
 ```
 
 ### Install git-perl tools
-The lightweight version of Git that comes with the Intel Edison does not support the submodules used by Gobot. Installing git-perltools is necessary.
+The lightweight version of Git that comes with the Intel Edison does not support the submodules used by Gobot. Therefore, installing git-perltools is necessary. This can be achieved by executing the following command on the Intel Edison terminal:
 
-```shell
+ ```shell
 opkg install git-perltools
-```
+ ``` 
 
 ### Install Gobot
-To use Go with the Intel Edison, use the Gobot framework for drivers and adaptors on the board. To install Gobot and its required dependencies, execute the following in your computer terminal:
+Gobot is a framework providing drivers and adaptors to control the sensors attached to the Intel Edison. To install Gobot and its required dependencies, execute the following in the terminal:
 
 ``` shell
  go get -d -u gobot.io/x/gobot/...
@@ -105,7 +100,7 @@ Once you are logged into the Intel Edison and are able to interact with its Linu
 git clone https://github.com/relayr/edison
 ```
 
-From then on you can find the folder with the Go code examples `~/edison/go/examples` of the Edison board. However, before running any of them we first have to install all the necessary packages.
+From then on you can find the folder with the Go code examples `~/edison/go/examples` of the Edison board.
 
 ##Code Examples
 ### Example 1 (blink.go)
@@ -120,7 +115,7 @@ If the LED on the board started blinking, then you can move on to the next examp
 
 ### Example 2 (temperature.go)
 
-The `temperature.go` example uses a Grove Temperature Sensor. The sensor outputs a analog value for the temperature in Celsius that is then sent to the relayr Cloud.
+The `temperature.go` example uses a Grove Temperature Sensor. The sensor outputs an analog value for the temperature in Celsius that is then sent to the relayr Cloud.
 
 First, prepare the hardware by connecting the *Grove temperature sensor* to the **Analog Pin 3 (A3)**.
 
@@ -133,6 +128,8 @@ Next, modify the `temperature.go` script in the temperature folder with the MQTT
     	password: "<your password>",
     	clientId: "<your client id>",
     	topic: "<your topic>",
+		broker: "<broker>"
+
 	}
 ```
 
@@ -140,7 +137,7 @@ Next, modify the `temperature.go` script in the temperature folder with the MQTT
 go run temperature.go
 ```
 
-If the MQTT client connects, you can observe the changes on the relayr Dashboard on the temperature sensor.
+If the MQTT client connects, you can observe the changes on the relayr Dashboard of the temperature sensor.
 
 ### Example 3 (buzzer.go)
 
@@ -161,13 +158,15 @@ Next, modify the `buzzer.go` script in the example folder with the MQTT credenti
     	password: "<your password>",
     	clientId: "<your client id>",
     	topic: "<your topic>",
+		broker: "<broker>"
+
 	}
 ```
 
 ```shell
 go run buzzer.go
 ```
+
 If the MQTT client connects, you can observe the changes on the relayr Dashboard on the buzzer.
 
-Now the Intel Edison is listening to the messages from the relayr cloud. You can control the buzzer by pressing **True** or **False** in the **buzzer**
-widget on the relayr Dashboard. If you set it up correctly, you'll hear a buzzing sound.
+Now the Intel Edison is listening to the messages from the relayr cloud. You can control the buzzer by pressing **True** or **False** in the **buzzer** widget on the relayr Dashboard. If you set it up correctly, you'll hear a buzzing sound.
