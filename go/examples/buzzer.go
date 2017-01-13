@@ -93,11 +93,8 @@ func main() {
 				//start the buzzer
 				buzzer.Tone(gpio.C4, gpio.Quarter)
 				time.Sleep(10 * time.Millisecond)
-
-				fmt.Printf("BUZZ")
 		    //if message value is false, turn buzzer off
 			} else if m.Value == false{
-				fmt.Printf("NO BUZZ")
 			}
 		}
 	}

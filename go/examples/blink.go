@@ -14,7 +14,7 @@ func main() {
         
         work := func() { 
                 gobot.Every(1*time.Second, func() {
-                        //Turn the LED off and on every 0.5 seconds
+                        //Turn the LED off and on every 1 second
                         led.Toggle()
                         })
         }
