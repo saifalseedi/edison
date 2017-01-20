@@ -11,7 +11,7 @@ MQTT "github.com/eclipse/paho.mqtt.golang"
 "gobot.io/x/gobot/platforms/intel-iot/edison"
 )
 
-//Create structure for MQTT credentials
+// Create a structure for the MQTT credentials.
 type Cred struct {
 	user string
 	password string
@@ -20,16 +20,16 @@ type Cred struct {
 	broker string
 }
 
-//publish the payload as a json message to the 'data' MQTT topic
+// Publish the payload as a JSON message to the 'data' MQTT topic.
 func pub_value(topic string, client MQTT.Client, value string, meaning_name string){
 	var jsonprep string = `{"meaning":"`+meaning_name+`","value":"`+value+`"}`
 	token := client.Publish(topic, byte(0), false, jsonprep)
 	token.Wait()
 }
 
-//Main looop
+// Main loop.
 func main() {
-	//MQTT credentials from target device
+	// MQTT credentials from the targeted device.
 
 	mqtt_credentials := Cred{
 		user: "<your user ID>",
@@ -41,36 +41,36 @@ func main() {
 
 	opts := MQTT.NewClientOptions()
 	
-	//Create broker through port 1883
+	// Create a broker through the port 1883.
 	opts.AddBroker(mqtt_credentials.broker)
 	opts.SetClientID(mqtt_credentials.clientId)
 	opts.SetUsername(mqtt_credentials.user)
 	opts.SetPassword(mqtt_credentials.password)
 	opts.SetCleanSession(false)
 	
-	//Initialize the MQTT client
+	// Initialize the MQTT client.
 	client := MQTT.NewClient(opts)
 
-	//Check for connection
+	// Check for a connection with the broker.
 	if token := client.Connect(); token.Wait() && token.Error() != nil {
 		panic(token.Error())
 	}
 
-	//Instantiate a temperature sensor object at analog pin A0 for input and board
+	// Instantiate a temperature sensor object at the analog pin A0 for the input.
 	board := edison.NewAdaptor()
 	sensor := aio.NewGroveTemperatureSensorDriver(board, "0")
 	
 	work := func() {
 		gobot.Every(500*time.Millisecond, func() {
-            		//Form the two values required in payload: meaning and value
+            		// Form the two values required in payload: meaning and value.
 			value := strconv.FormatFloat(sensor.Temperature(), 'E', -1, 64)
 			meaning_name := "temperature"
-                 	//Send payload values to publish to MQTT topic
+                 	// Send the payload values to publish to the MQTT topic.
 			pub_value(mqtt_credentials.topic + "data", client, value, meaning_name)
 			})
 	}
 
-    //Instatiate new gobot configuration
+    // Instatiate a new Gobot configuration for the Intel Edison.
 	robot := gobot.NewRobot("sensorBot",
 		[]gobot.Connection{board},
 		[]gobot.Device{sensor},
