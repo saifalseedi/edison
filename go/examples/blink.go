@@ -8,13 +8,13 @@ import (
 )
 
 func main() {
-        //Instatiate the edison adaptor and the led at GPIO 13
+        // Instantiate the Edison adaptor and the LED at GPIO 13.
         e := edison.NewAdaptor()
         led := gpio.NewLedDriver(e, "13")
         
         work := func() { 
                 gobot.Every(1*time.Second, func() {
-                        //Turn the LED off and on every 1 second
+                        //Turn the LED off and on every 1 second.
                         led.Toggle()
                         })
         }
