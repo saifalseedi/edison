@@ -3,7 +3,6 @@
 package main
 
 import (
-	 //	"time"
 "encoding/json"
 "fmt"
 "time"
@@ -20,7 +19,7 @@ type Message struct {
 
 }
 
-//Create structure for MQTT credentials
+// Create a structure for the MQTT credentials.
 type Cred struct {
 	user string
 	password string
@@ -30,9 +29,9 @@ type Cred struct {
 
 }
 
-//Main looop
+// Main loop.
 func main() {
-	//MQTT credentials from target device
+	// MQTT credentials from the target device.
 	mqtt_credentials := Cred{
 		user: "<your user ID>",
 		password: "<your password>",
@@ -41,13 +40,13 @@ func main() {
 		broker: "<broker>"
 	}
 
-	//Instantiate a buzzer at digital pin 3 for ouput and board
+	// Instantiate a buzzer at digital pin 3 for ouput.
 	board := edison.NewAdaptor()
 	buzzer := gpio.NewBuzzerDriver(board, "5")
 
 	opts := MQTT.NewClientOptions()
 
-	//Create broker through port 1883
+	// Create a broker through the port 1883.
 	opts.AddBroker(mqtt_credentials.broker)
 
 	opts.SetClientID(mqtt_credentials.clientId)
@@ -61,10 +60,10 @@ func main() {
 		choke <- [2]string{msg.Topic(), string(msg.Payload())}
 		})
 
-	//Initialize the MQTT client
+	// Initialize the MQTT client.
 	client := MQTT.NewClient(opts)
 
-	//Check for connection
+	// Check for a connection.
 	if token := client.Connect(); token.Wait() && token.Error() != nil {
 		panic(token.Error())
 	}
@@ -75,25 +74,24 @@ func main() {
 		os.Exit(1)
 	}
 
-	//Work when robot is started
+	// Activity when the robot is started.
 	work := func() {
 		for {
-			//Check for new messages from topic
+			// Check for new messages from the subscribed topic.
 			incoming := <-choke
-			//print message and topic
+			// Print the message and topic.
 			fmt.Printf("RECEIVED TOPIC: %s MESSAGE: %s\n", incoming[0], incoming[1])
 			var m Message
-			//convert from json to message structure
 			json.Unmarshal([]byte(incoming[1]), &m)
-			//print message value, ie true or false
+			// Print the message value, ie true or false.
 			fmt.Println(m.Value)
 
-			//if message value is true, turn buzzer on
+			// If the message value is true, turn the buzzer on.
 			if m.Value == true {
 				//start the buzzer
 				buzzer.Tone(gpio.C4, gpio.Quarter)
 				time.Sleep(10 * time.Millisecond)
-		    //if message value is false, turn buzzer off
+		    // If the message value is false, turn the buzzer off.
 			} else if m.Value == false{
 			}
 		}
