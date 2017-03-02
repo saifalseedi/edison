@@ -14,10 +14,10 @@ Before getting started, **select the model of the Fog-based Starter Kit you will
 
 On the other hand, **if you don't have a Starter Kit and want to run these examples with the Edison alone, or with an IoT Sensor Kit, simply choose the last option**.
 
-* [IoT Acceleration Starter Kit](https://github.com/relayr/edison/blob/master/README_IoT_Acceleration_Starter_Kit.md)
+* [IoT Acceleration Starter Kit](./README_IoT_Acceleration_Starter_Kit.md)
 (incl. hardware from Dell, Intel®, Bosch Connected Devices, and other vendors)
-* [Industrial IoT Starter Kit](https://github.com/relayr/edison/blob/master/README_Industrial_IoT_Starter_Kit.md) (incl. hardware from Cisco, Intel®, ifm electronic, and other vendors)
-* [I am not using any Starter Kit](https://github.com/relayr/edison/blob/master/README_No_Starter_Kit.md). Select this option if you will be working with the Edison board alone, or if you will be using a relayr's IoT Sensor Kit (incl. Arduino breakout board, Grove sensors and actuators, and others)
+* [Industrial IoT Starter Kit](./README_Industrial_IoT_Starter_Kit.md) (incl. hardware from Cisco, Intel®, ifm electronic, and other vendors)
+* [I am not using any Starter Kit](./README_Edison_Only.md). Select this option if you will be working with the Edison board alone, or if you will be using a relayr's IoT Sensor Kit (incl. Arduino breakout board, Grove sensors and actuators, and others)
 
 ## More About relayr's Fog-based Starter Kits
 
@@ -25,7 +25,7 @@ If you would like to know more about the available Starter Kits and Vertex, rela
 
 ## License
 
-Copyright (C) 2016 relayr GmbH, Klemen Lilija <klemen@relayr.io>, Brian Lemke <brian@relayr.io>, Antonio Almeida <antonio@relayr.io>, Jaime González-Arintero <jaime@relayr.io>
+Copyright (C) 2017 relayr GmbH, Klemen Lilija <klemen@relayr.io>, Brian Lemke <brian@relayr.io>, Antonio Almeida <antonio@relayr.io>, Jaime González-Arintero <jaime@relayr.io>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:

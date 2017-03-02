@@ -11,8 +11,8 @@ In this repository, you will find tutorials and code examples of how to make use
 This document provides resources on how to get started with the Edison, including the mechanical assembly. **If your board has already been assembled,
 then please navigate to one of the available tutorials to continue:**
 
--  [Python](https://github.com/relayr/edison/tree/master/python)
--  [Arduino](https://github.com/relayr/edison/tree/master/arduino)
+-  [Python](./python/README.md)
+-  [Arduino](./arduino/README_Arduino_IoT_Acceleration_Starter_Kit.md)
 
 ## Requirements
 
@@ -45,8 +45,8 @@ After that, plug the Grove Base Shield onto your Arduino Expansion Board as show
 Once our board is ready, it's time to configure the software of the Edison according to the programming language of your choice. **Before proceeding with
 the Vertex integration,** select one of the following tutorials, and complete all the steps:
 
--  [Python](https://github.com/relayr/edison/tree/master/python)
--  [Arduino](https://github.com/relayr/edison/tree/master/arduino)
+-  [Python](./python/README.md)
+-  [Arduino](./arduino/README_Arduino_IoT_Acceleration_Starter_Kit.md)
 
 ## Association with Vertex
 
