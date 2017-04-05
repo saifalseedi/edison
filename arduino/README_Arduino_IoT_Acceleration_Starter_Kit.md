@@ -173,7 +173,7 @@ Now you are ready to run the code examples below!
 
 In this repository, you will also find the following code examples that will help you get started with the different sensors included in the kit. These codes are heavily commented so that they can serve as the base of more complex applications.
 
-We will need a representation of our Intel® Edison board in the relayr Cloud. Through this entity we will manage sent/received data, MQTT credentials and UI interface of the relayr Dashboard. To create a device on relayr Dashboard follow the [**Devices Guide**](http://docs.relayr.io/getting-started/devices-guide/) and select the **Intel Edison (IoT Acceleration Starter Kit)** as a *Device Model*. The best way to find this model when creating the device is to select the tab "By the community," and type in the search bar the name of the model: "Intel Edison (IoT Acceleration Starter Kit)."
+We will need a representation of our Intel® Edison board in the relayr Cloud. Through this entity we will manage sent/received data, MQTT credentials and UI interface of the relayr Dashboard. To create a device on relayr Dashboard follow the [**Devices Guide**](https://docs.relayr.io/cloud/getting-started/adding-your-first-device/) and select the **Intel Edison (IoT Acceleration Starter Kit)** as a *Device Model*. The best way to find this model when creating the device is to select the tab "By the community," and type in the search bar the name of the model: "Intel Edison (IoT Acceleration Starter Kit)."
 
 ![Selecting the device model](../assets/edison_model_dev_dashboard.png)
 
