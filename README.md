@@ -23,6 +23,11 @@ On the other hand, **if you don't have a Starter Kit and want to run these examp
 
 If you would like to know more about the available Starter Kits and Vertex, relayr's fog-computing software, as well as the purchasing options, please refer to [this site](http://www.iot-starterkit.de/).
 
+## To Do
+
+* Add the Go edition to the main readme files, and include it on the general flow of the tutorial.
+* Add missing examples for Arduino. 
+
 ## License
 
 Copyright (C) 2017 relayr GmbH, Klemen Lilija <klemen@relayr.io>, Brian Lemke <brian@relayr.io>, Antonio Almeida <antonio@relayr.io>, Jaime González-Arintero <jaime@relayr.io>
